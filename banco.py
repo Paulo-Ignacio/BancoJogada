@@ -12,6 +12,14 @@ def cadastrar_usuario(nome, cpf):
         contas[cpf] = {"saldo": 0.0, "extrato": []}
         print(f"Usuário {nome} cadastrado com sucesso.")
 
+def login(cpf): # Grupo 1
+    if cpf in usuarios:
+        print(f"Login bem-sucedido. Bem-vindo(a), {usuarios[cpf]["nome"]}!")
+        return True
+    else:
+        print("Usuário não encontrado.")
+        return False
+
 def depositar(cpf, valor):
     if cpf in contas:
         contas[cpf]["saldo"] += valor
@@ -61,17 +69,69 @@ def editar_usuario(cpf):
 # Adicione a função fechar_conta aqui
 # Adicione a função consultar_saldo aqui
 
-# Cadastro de usuários (exemplo)
-cadastrar_usuario("João", "12345678900")
-cadastrar_usuario("Maria", "09876543211")
+# Menu Interativo = Grupo 1 
+def menu():
+    logado = False
+    while not logado:
+        print("\n===== Sistema Bancário =====")
+        print("1. Cadastrar usuário")
+        print("2. Fazer login")
+        print("3. Sair")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == "1":
+            nome = input("Digite o nome: ").strip()
+            cpf = input("Digite o CPF: ").strip()
+            cadastrar_usuario(nome, cpf)
+        
+        elif opcao == "2":
+            cpf = input("Digite o CPF: ").strip()
+            logado = login(cpf)
+            if logado:
+                while logado:
+                    print("\n===== Menu Principal =====")
+                    print("1. Depositar")
+                    print("2. Sacar")
+                    print("3. Transferir")
+                    print("4. Gerar extrato")
+                    print("5. Editar usuário")
+                    print("6. Fechar conta")
+                    print("7. Consultar saldo")
+                    print("0. Sair")
+                    
+                    opcao = input("Escolha uma opção: ")
+                    
+                    if opcao == "1":
+                        valor = float(input("Digite o valor a ser depositado: "))
+                        depositar(cpf, valor)
+                    
+                    # elif opcao == "2":
+                        
+                    # elif opcao == "3":
+                        
+                    # elif opcao == "4":
+                        
+                    # elif opcao == "5":
+                        
+                    # elif opcao == "6": # Adicionado o "logado = false" para tirar o login, basta criar e adicionar a função
+                    #     logado = False
 
-# Realizar algumas operações (exemplo)
-depositar("12345678900", 1000.0)
-sacar("12345678900", 200.0)
-transferir("12345678900", "09876543211", 300.0)
+                    # elif opcao == "7":
+                        
+                    elif opcao == "0":
+                        print("Saindo do sistema...")
+                        logado = False
+                    
+                    else:
+                        print("Opção inválida. Por favor, tente novamente.")
+        
+        elif opcao == "3":
+            print("Saindo do sistema...")
+            break
+        
+        else:
+            print("Opção inválida. Por favor, tente novamente.")
 
-# Gerar extratos (exemplo)
-gerar_extrato("12345678900")
-print()
-gerar_extrato("09876543211")
-
+# Executar o menu
+menu()
