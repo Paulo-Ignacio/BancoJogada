@@ -21,10 +21,10 @@ Consultar Saldo
 - Função para consultar o saldo de um usuário sem gerar o extrato completo.
 
 DIVISÃO DOS GRUPOS:
-GRUPO 1 (Cadastrar usuário; Depositar)- Miguel, Leonardo, João
-GRUPO 2 (Sacar; Transferir )- Amanda, Raul, Arthur, Guilherme
-GRUPO 3 (Gerar extrato; Editar usuário)- Mikael, Diovane, Leonardo S.
-GRUPO 4 (Fechar Conta; Consultar Saldo)- Paulo, Bernardo, João Kinipel, João Duarte
+- GRUPO 1 (Cadastrar usuário; Depositar)- Miguel, Leonardo, João
+- GRUPO 2 (Sacar; Transferir )- Amanda, Raul, Arthur, Guilherme
+- GRUPO 3 (Gerar extrato; Editar usuário)- Mikael, Diovane, Leonardo S.
+- GRUPO 4 (Fechar Conta; Consultar Saldo)- Paulo, Bernardo, João Kinipel, João Duarte
 
 Sair
 Utilize um loop while para manter o menu ativo até que o usuário escolha a opção de sair.
