@@ -20,6 +20,7 @@ Fechar Conta
 Consultar Saldo
 - Função para consultar o saldo de um usuário sem gerar o extrato completo.
 
+DIVISÃO DOS GRUPOS:
 GRUPO 1 - 
 GRUPO 2 -
 GRUPO 3 - 
