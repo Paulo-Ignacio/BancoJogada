@@ -73,7 +73,7 @@ def editar_usuario(cpf):
 def menu():
     logado = False
     while not logado:
-        print("\n===== Sistema Bancário =====")
+        print("===== Sistema Bancário =====")
         print("1. Cadastrar usuário")
         print("2. Fazer login")
         print("3. Sair")
@@ -90,7 +90,7 @@ def menu():
             logado = login(cpf)
             if logado:
                 while logado:
-                    print("\n===== Menu Principal =====")
+                    print("===== Menu Principal =====")
                     print("1. Depositar")
                     print("2. Sacar")
                     print("3. Transferir")
