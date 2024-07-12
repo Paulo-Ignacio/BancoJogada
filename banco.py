@@ -110,9 +110,13 @@ def menu():
                         
                     # elif opcao == "3":
                         
-                    # elif opcao == "4":
+                    #Opção de gerar extrato (Grupo 3)
+                    elif opcao == "4": 
+                        gerar_extrato(cpf)
                         
-                    # elif opcao == "5":
+                    #Opção de editar usuário (Grupo 3)    
+                    elif opcao == "5":
+                        editar_usuario(cpf)
                         
                     # elif opcao == "6": # Adicionado o "logado = false" para tirar o login, basta criar e adicionar a função
                     #     logado = False
