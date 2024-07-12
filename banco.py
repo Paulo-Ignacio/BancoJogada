@@ -12,6 +12,14 @@ def cadastrar_usuario(nome, cpf):
         contas[cpf] = {"saldo": 0.0, "extrato": []}
         print(f"Usuário {nome} cadastrado com sucesso.")
 
+def login(cpf): # Grupo 1
+    if cpf in usuarios:
+        print(f"Login bem-sucedido. Bem-vindo(a), {usuarios[cpf]["nome"]}!")
+        return True
+    else:
+        print("Usuário não encontrado.")
+        return False
+
 def depositar(cpf, valor):
     if cpf in contas:
         contas[cpf]["saldo"] += valor
@@ -58,20 +66,98 @@ def editar_usuario(cpf):
     else:
         print("Usuário não encontrado.")
 
-# Adicione a função fechar_conta aqui
-# Adicione a função consultar_saldo aqui
+def fechar_conta(cpf):
+    if cpf in contas:
+        # Gerar o extrato final
+        print(f"Extrato final da conta de {usuarios[cpf]['nome']} (CPF: {usuarios[cpf]['cpf']}):")
+        for item in contas[cpf]["extrato"]:
+            print(item)
+        print(f"Saldo final: R${contas[cpf]['saldo']:.2f}")
+        
+        # Confirmação do usuário
+        confirmacao = input("Tem certeza de que deseja fechar a conta? Se sim, digite 'Sim', se não digite 'Não': ").strip().lower()
+        if confirmacao == 'sim':
+            # Remover o usuário e a conta
+            del contas[cpf]
+            del usuarios[cpf]
+            print("Conta fechada com sucesso.")
+        elif confirmacao == 'não':
+            print("Fechamento de conta cancelado.")
+        else:
+            print("Resposta inválida, Fechamento de conta cancelado.")
+    else:
+        print("Usuário não encontrado.")
 
-# Cadastro de usuários (exemplo)
-cadastrar_usuario("João", "12345678900")
-cadastrar_usuario("Maria", "09876543211")
+def consultar_saldo(cpf): # Grupo 4
+    if cpf in contas: 
+        print(f"Saldo atual: R${contas[cpf]['saldo']:.2f}")
 
-# Realizar algumas operações (exemplo)
-depositar("12345678900", 1000.0)
-sacar("12345678900", 200.0)
-transferir("12345678900", "09876543211", 300.0)
 
-# Gerar extratos (exemplo)
-gerar_extrato("12345678900")
-print()
-gerar_extrato("09876543211")
+# Menu Interativo = Grupo 1 
+def menu():
+    logado = False
+    while not logado:
+        print("===== Sistema Bancário =====")
+        print("1. Cadastrar usuário")
+        print("2. Fazer login")
+        print("3. Sair")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == "1":
+            nome = input("Digite o nome: ").strip()
+            cpf = input("Digite o CPF: ").strip()
+            cadastrar_usuario(nome, cpf)
+        
+        elif opcao == "2":
+            cpf = input("Digite o CPF: ").strip()
+            logado = login(cpf)
+            if logado:
+                while logado:
+                    print("===== Menu Principal =====")
+                    print("1. Depositar")
+                    print("2. Sacar")
+                    print("3. Transferir")
+                    print("4. Gerar extrato")
+                    print("5. Editar usuário")
+                    print("6. Fechar conta")
+                    print("7. Consultar saldo")
+                    print("0. Sair")
+                    
+                    opcao = input("Escolha uma opção: ")
+                    
+                    if opcao == "1":
+                        valor = float(input("Digite o valor a ser depositado: "))
+                        depositar(cpf, valor)
+                    
+                    # elif opcao == "2":
+                        
+                    # elif opcao == "3":
+                        
+                    # elif opcao == "4":
+                        
+                    # elif opcao == "5":
+                        
+                    elif opcao == "6":
+                        fechar_conta(cpf)
+                        logado = False # deslogar depois de fechar a conta
 
+                    elif opcao == "7":
+                        consultar_saldo(cpf)
+                        
+                    elif opcao == "0":
+                        print("Saindo do sistema...")
+                        logado = False
+                    
+                    else:
+                        print("Opção inválida. Por favor, tente novamente.")
+        
+        elif opcao == "3":
+            print("Saindo do sistema...")
+            break
+        
+        else:
+            print("Opção inválida. Por favor, tente novamente.")
+
+# Executar o menu
+menu()
